@@ -1,0 +1,45 @@
+# Local environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+.DS_Store
+Thumbs.db
+
+# Private company inputs, references and generated outputs
+raw/
+csv/
+prepared/
+private/
+비공개자료/
+분석결과*/
+이미지검토/
+자료요청/
+추가자료/
+한국로텍_분석참고자료.json
+*.csv
+*.tsv
+*.xls
+*.xlsx
+*.ppt
+*.pptx
+*.pdf
+*.zip
+*.png
+*.jpg
+*.jpeg
+*.emf
+*.wmf
+*.log
+
+# Local server credentials and runtime files
+.env
+.env.*
+!.env.example
+jupyter_*config.json
+jupyter_*config.py
+jpserver-*.json
+*.pem
+*.key
