@@ -1,6 +1,7 @@
 """Check that the published distribution contains code and usable local links."""
 from pathlib import Path
 import ast
+import csv
 import json
 import re
 import subprocess
@@ -22,7 +23,13 @@ for cell in nb['cells']:
         assert not any(isinstance(node, ast.Constant) and isinstance(node.value, str)
                        and len(node.value) > 20000 for node in ast.walk(tree)), 'Unexpected embedded payload.'
         code_cells += 1
-assert code_cells == 18
+assert code_cells == 19
+additional_cell = next(c for c in nb['cells'] if 'rotec-additional-data' in c.get('metadata', {}).get('tags', []))
+schema_node = next(n for n in ast.parse(''.join(additional_cell['source'])).body
+                   if isinstance(n, ast.Assign) and any(isinstance(t, ast.Name) and t.id == 'ADDITIONAL_COLUMNS' for t in n.targets))
+with (ROOT/'templates/추가자료_입력양식.csv').open(encoding='utf-8-sig', newline='') as stream:
+    template_rows = list(csv.reader(stream))
+assert template_rows == [list(ast.literal_eval(schema_node.value))], 'Template must contain only the expected header.'
 lock = [line.strip() for line in (ROOT/'requirements.txt').read_text(encoding='utf-8').splitlines()
         if line.strip() and not line.startswith('#')]
 assert lock == runtime['requirements_lock'], 'Notebook and server installation versions differ.'
@@ -42,7 +49,8 @@ for document in [ROOT/'README.md', *sorted((ROOT/'docs').glob('*.md'))]:
 
 private_paths = ['raw/source.xlsx','csv/source.csv','prepared/한국로텍_분석참고자료.json',
                  '분석결과/한국로텍_분석보고서.html','.env','private/company.json',
-                 'server-output/한국로텍_데이터분석.ipynb','.ngrok-authtoken']
+                 'server-output/한국로텍_데이터분석.ipynb','.ngrok-authtoken',
+                 '추가자료/입력/company.csv','추가자료/입력/company.xlsx','trained_model.joblib']
 result = subprocess.run(['git','check-ignore','-z','--stdin'],
                         input=('\0'.join(private_paths)+'\0').encode('utf-8'),
                         capture_output=True, cwd=ROOT)

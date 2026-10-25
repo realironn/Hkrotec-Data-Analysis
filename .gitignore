@@ -20,6 +20,7 @@ private/
 추가자료/
 한국로텍_분석참고자료.json
 *.csv
+!templates/추가자료_입력양식.csv
 *.tsv
 *.xls
 *.xlsx
@@ -27,6 +28,7 @@ private/
 *.pptx
 *.pdf
 *.zip
+*.joblib
 *.png
 *.jpg
 *.jpeg

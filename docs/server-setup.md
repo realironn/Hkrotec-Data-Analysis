@@ -28,7 +28,7 @@
 
 ## 실행 환경
 
-검증한 환경은 **Windows와 Linux Docker, Python 3.14**입니다. Linux Docker에서는 2026-10-25에 실제 데이터로 코드 셀 18개와 분석 검증 15개를 통과했습니다. 분석은 CPU에서 실행하며 GPU는 사용하지 않습니다.
+검증한 환경은 **Windows와 Linux Docker, Python 3.14**입니다. Linux Docker에서는 2026-10-25에 실제 데이터로 전체 실행과 분석 검증 15개를 통과했습니다. 분석은 CPU에서 실행하며 GPU는 사용하지 않습니다.
 
 Windows 서버에서는 [Windows 설치·실행 가이드](./windows-setup.md)의 환경 준비 방법을 그대로 사용할 수 있습니다.
 Linux에 직접 설치한다면 Python 3.14 환경, 필요한 패키지와 한글 폰트를 준비한 뒤 전체 실행을 확인합니다. Docker 이미지는 이 환경을 포함합니다.
