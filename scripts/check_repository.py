@@ -41,7 +41,8 @@ for document in [ROOT/'README.md', *sorted((ROOT/'docs').glob('*.md'))]:
         checked_links += 1
 
 private_paths = ['raw/source.xlsx','csv/source.csv','prepared/한국로텍_분석참고자료.json',
-                 '분석결과/한국로텍_분석보고서.html','.env','private/company.json']
+                 '분석결과/한국로텍_분석보고서.html','.env','private/company.json',
+                 'server-output/한국로텍_데이터분석.ipynb','.ngrok-authtoken']
 result = subprocess.run(['git','check-ignore','-z','--stdin'],
                         input=('\0'.join(private_paths)+'\0').encode('utf-8'),
                         capture_output=True, cwd=ROOT)

@@ -43,3 +43,5 @@ jupyter_*config.py
 jpserver-*.json
 *.pem
 *.key
+server-output/
+.ngrok-authtoken

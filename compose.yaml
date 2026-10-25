@@ -1,0 +1,68 @@
+name: hkrotec-analysis
+services:
+  notebook:
+    build: .
+    image: hkrotec-analysis:local
+    init: true
+    restart: unless-stopped
+    user: "${ROTEC_UID:-1000}:${ROTEC_GID:-1000}"
+    ports:
+      - "${ROTEC_BIND_IP:-127.0.0.1}:${ROTEC_PORT:-8890}:8888"
+    environment:
+      JUPYTER_TOKEN: "${JUPYTER_TOKEN:?Set a nonempty JUPYTER_TOKEN in .env}"
+      ROTEC_PREINSTALLED: "1"
+      ROTEC_RESULTS_DIR: /workspace/분석결과
+      TZ: Asia/Seoul
+    volumes:
+      - type: bind
+        source: "${ROTEC_OUTPUT_DIR:?Set ROTEC_OUTPUT_DIR in .env}"
+        target: /workspace
+        bind:
+          create_host_path: false
+      - type: bind
+        source: "${ROTEC_DATA_DIR:?Set ROTEC_DATA_DIR in .env}/raw"
+        target: /workspace/raw
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: "${ROTEC_DATA_DIR}/csv"
+        target: /workspace/csv
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: "${ROTEC_DATA_DIR}/prepared"
+        target: /workspace/prepared
+        read_only: true
+        bind:
+          create_host_path: false
+    healthcheck:
+      test: ["CMD", "python", "/opt/rotec/docker/healthcheck.py"]
+      interval: 15s
+      timeout: 5s
+      start_period: 60s
+      retries: 5
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+  ngrok:
+    image: ngrok/ngrok:alpine
+    profiles: [share]
+    restart: unless-stopped
+    depends_on:
+      notebook:
+        condition: service_healthy
+    environment:
+      NGROK_AUTHTOKEN: "${NGROK_AUTHTOKEN:-}"
+    command: ["http", "http://notebook:8888", "--config=/etc/ngrok.yml", "--log=stdout", "--inspect=false"]
+    volumes:
+      - type: bind
+        source: ./docker/ngrok.yml
+        target: /etc/ngrok.yml
+        read_only: true
+        bind:
+          create_host_path: false
+    ports:
+      - "127.0.0.1:4041:4040"
