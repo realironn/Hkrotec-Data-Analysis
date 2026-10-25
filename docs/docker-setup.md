@@ -84,10 +84,12 @@ docker compose --profile share up -d ngrok
 python3 scripts/share_link.py
 ```
 
-이 명령은 실제 발급된 HTTPS 노트북 주소를 출력합니다. 이용자는 링크를 열어 Jupyter 로그인 토큰을 입력하면 됩니다. 토큰까지 포함한 링크가 필요하면 아래 명령을 사용하고 허가된 이용자에게만 전달합니다.
+이 명령은 실행 중인 서버의 접속 정보가 포함된 HTTPS 노트북 주소를 출력합니다. 이 주소 전체를 전달하면 이용자는 로그인 코드를 입력하지 않고 열 수 있습니다. 공유할 사람에게 별도로 전달하며, 공개 GitHub 문서에는 넣지 않습니다.
+
+접속 정보를 뺀 기본주소만 확인하려면 아래 명령을 사용합니다. 이 기본주소는 로그인 화면이 나오므로 이용자에게 전달할 접속용 링크로 사용하지 않습니다.
 
 ```bash
-python3 scripts/share_link.py --include-token
+python3 scripts/share_link.py --public-url
 ```
 
 ngrok 관리 API는 서버 내부 `127.0.0.1:4041`에 연결됩니다. 요청 본문 검사는 꺼 두었습니다. ngrok 주소의 유지 여부는 계정의 도메인 설정에 따르므로, 재시작 후 위 명령으로 실제 주소를 확인합니다. 공유 종료 시에는 `docker compose --profile share stop ngrok`을 실행합니다.
