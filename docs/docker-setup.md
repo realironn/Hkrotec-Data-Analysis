@@ -67,7 +67,7 @@ docker compose ps
 docker compose exec -T notebook python /opt/rotec/run_notebook.py
 ```
 
-내부 주소는 `http://127.0.0.1:8890`입니다. 로그인할 때 `.env`의 `JUPYTER_TOKEN`을 입력합니다. 브라우저에서 **Run → Run All Cells**로 실행해도 같습니다. Docker에서는 첫 셀이 설치된 버전을 확인하고 패키지를 다시 설치하지 않습니다.
+내부 주소는 `http://127.0.0.1:8890`입니다. 로그인할 때 `.env`의 `JUPYTER_TOKEN`을 입력합니다. 브라우저에서 Run → Run All Cells로 실행해도 같습니다. Docker에서는 첫 셀이 설치된 버전을 확인하고 패키지를 다시 설치하지 않습니다.
 
 전체 실행 결과는 `server-output/분석결과/한국로텍_분석보고서.html`, 계산표는 `tables`, 그래프는 `figures`에 저장합니다. `한국로텍_데이터분석_실행완료.ipynb`에는 실행 결과가 남고, 실패 시 `한국로텍_데이터분석_실패기록.ipynb`가 저장됩니다. `server-validation.json`의 `passed`는 모든 셀이 오류 없이 끝났다는 뜻입니다. 분석 품질 검증 항목은 `tables/verification.csv`에서 별도로 확인합니다.
 

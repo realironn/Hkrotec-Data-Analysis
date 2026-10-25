@@ -28,7 +28,7 @@
 
 ## 실행 환경
 
-검증한 환경은 **Windows와 Linux Docker, Python 3.14**입니다. Linux Docker에서는 2026-10-25에 실제 데이터로 전체 실행과 분석 검증 15개를 통과했습니다. 분석은 CPU에서 실행하며 GPU는 사용하지 않습니다.
+검증한 환경은 Windows와 Linux Docker, Python 3.14입니다. Linux Docker에서는 2026-10-25에 실제 데이터로 전체 실행과 분석 검증 15개를 통과했습니다. 분석은 CPU에서 실행하며 GPU는 사용하지 않습니다.
 
 Windows 서버에서는 [Windows 설치·실행 가이드](./windows-setup.md)의 환경 준비 방법을 그대로 사용할 수 있습니다.
 Linux에 직접 설치한다면 Python 3.14 환경, 필요한 패키지와 한글 폰트를 준비한 뒤 전체 실행을 확인합니다. Docker 이미지는 이 환경을 포함합니다.
@@ -53,7 +53,7 @@ Jupyter의 기본 인증을 유지합니다. 외부 접속은 운영 환경에 �
 
 ## 공유할 링크
 
-Docker·ngrok 환경에서는 저장소 폴더에서 아래 명령으로 **접속 정보가 포함된 공유용 링크**를 발급합니다.
+Docker·ngrok 환경에서는 저장소 폴더에서 아래 명령으로 접속 정보가 포함된 공유용 링크를 발급합니다.
 
 ```bash
 python3 scripts/share_link.py
