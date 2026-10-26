@@ -121,3 +121,5 @@ docker compose --profile share down
 컨테이너를 내려도 입력자료와 출력 폴더는 남습니다. 재실행은 같은 결과 폴더를 갱신합니다. 동시에 여러 사람이 독립 분석을 해야 하면 별도 출력 폴더·포트·Compose 프로젝트를 사용하거나 JupyterHub를 구성합니다.
 
 구성 근거: [Docker 읽기 전용 bind mount](https://docs.docker.com/engine/storage/bind-mounts/), [Jupyter 토큰 인증](https://jupyter-server.readthedocs.io/en/latest/operators/security.html).
+
+[처음 안내로 돌아가기](../README.md)

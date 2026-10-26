@@ -5,6 +5,8 @@
 처음 한 번 설치한 뒤에는 노트북을 열어 순서대로 실행하시면 됩니다.
 회사 자료와 비공개 분석참고자료는 담당자에게 별도로 받아야 합니다.
 
+전체 분석은 Linux Docker에서 검증했습니다. 아래 Windows 직접 설치 절차는 실기기 검증 전입니다.
+
 ## 1. 저장소 다운로드
 
 1. [저장소 첫 화면](https://github.com/realironn/Hkrotec-Data-Analysis)에서 초록색 Code 버튼을 누릅니다.
@@ -24,6 +26,7 @@ Hkrotec-Data-Analysis-main/
     raw/
     csv/
     prepared/
+        five_fold/            # 기존 집계·검증 CSV 6개
         한국로텍_분석참고자료.json
 ```
 
@@ -36,12 +39,12 @@ Hkrotec-Data-Analysis-main/
 3. 다음 명령을 실행합니다.
 
 ```powershell
-py install 3.14
+pymanager install 3.14
 py -3.14 --version
 ```
 
 `Python 3.14.x`가 나오면 준비되었습니다. 이미 3.14를 사용 중이면 설치는 건너뜁니다.
-기존 Python Launcher를 사용하는 PC에서는 `py install` 명령이 없을 수 있습니다. 이 경우 Python 3.14 설치 프로그램으로 설치한 뒤 버전을 확인합니다.
+`pymanager` 명령이 없으면 Python Install Manager 설치를 마친 뒤 PowerShell을 새로 엽니다. `py`는 기존 Python Launcher와 이름이 겹칠 수 있어 설치 명령에는 `pymanager`를 사용합니다.
 
 공식 설치 설명: [Windows에서 Python 사용하기](https://docs.python.org/3.14/using/windows.html)
 
@@ -100,3 +103,5 @@ py -3.14 -m venv .venv
 | 원본이 검토 기준과 다름 | 입력자료를 임의로 바꾸지 말고 파일명과 오류 내용을 분석 담당자에게 전달합니다. |
 | 브라우저가 자동으로 열리지 않음 | PowerShell에 표시된 Jupyter 주소를 같은 PC의 브라우저에서 엽니다. |
 | 설치 오류 | 인터넷 연결을 확인하고 설치 명령을 다시 실행합니다. |
+
+[처음 안내로 돌아가기](../README.md)
