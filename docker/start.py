@@ -33,6 +33,9 @@ def prepare():
 
 if __name__ == '__main__':
     prepare()
+    from jupyter_server.services.contents.manager import ContentsManager
+    # Keep mounted inputs available to the notebook while simplifying the file list.
+    hidden_names = [*ContentsManager.hide_globs.default(), 'raw', 'csv', 'prepared']
     os.execv(sys.executable, [sys.executable, '-m', 'jupyterlab', '--no-browser',
              '--ServerApp.ip=0.0.0.0', '--ServerApp.port=8888',
              '--ServerApp.port_retries=0', '--ServerApp.root_dir=/workspace',
@@ -40,4 +43,5 @@ if __name__ == '__main__':
              '--ServerApp.trust_xheaders=True',
              '--ServerApp.use_redirect_file=False',
              '--ServerApp.custom_display_url=http://127.0.0.1:8888',
+             '--ContentsManager.hide_globs=' + json.dumps(hidden_names),
              '--LabApp.default_url=/lab/tree/' + NAME])
