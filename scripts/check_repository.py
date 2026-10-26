@@ -51,6 +51,7 @@ private_paths = ['raw/source.xlsx','csv/source.csv','prepared/한국로텍_분�
                  '분석결과/한국로텍_분석보고서.html','.env','private/company.json',
                  'server-output/한국로텍_데이터분석.ipynb','.ngrok-authtoken',
                  'server-admin/공유용_노트북_링크.txt',
+                 '공유용_노트북_링크.txt',
                  '추가자료/입력/company.csv','추가자료/입력/company.xlsx','trained_model.joblib']
 result = subprocess.run(['git','check-ignore','-z','--stdin'],
                         input=('\0'.join(private_paths)+'\0').encode('utf-8'),

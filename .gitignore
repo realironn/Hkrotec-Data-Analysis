@@ -47,4 +47,5 @@ jpserver-*.json
 *.key
 server-output/
 server-admin/
+공유용_노트북_링크.txt
 .ngrok-authtoken
